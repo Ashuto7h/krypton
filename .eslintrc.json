@@ -231,6 +231,7 @@
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "no-use-before-define": "off",
+    "no-void": "off",
     "object-curly-newline": "off",
     "object-curly-spacing": "warn",
     "object-property-newline": "warn",
