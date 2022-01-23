@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss';
-import { COLORS } from '.';
+import { COLORS } from './colors';
 
 export default createUseStyles({
   background: COLORS.primaryBackground,

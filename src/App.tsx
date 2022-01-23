@@ -1,8 +1,8 @@
-import { useTheme } from 'react-jss';
-import Alert from './components/Alert';
-import { COLORS, THEMES } from './themes';
+import type { FC } from 'react';
+import { Alert } from './components';
+import { COLORS } from './themes';
 
-const App = () => (
+const App: FC = () => (
   <Alert
     bgColor={COLORS.primaryBackground}
     className=''
