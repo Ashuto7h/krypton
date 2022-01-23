@@ -40,7 +40,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "prettier": "^2.5.1",
     "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0",
@@ -62,7 +62,8 @@
     "eslint": "eslint src __tests__ --ext .{ts,tsx,js,jsx}",
     "eslint-fix": "eslint src __tests__ --ext .{ts,tsx,js,jsx}",
     "prettier": "prettier --write .",
-    "precommit": "npm run prettier && npm run eslint-fix"
+    "precommit": "npm run prettier && npm run eslint-fix",
+    "prepare": "husky install"
   },
   "version": "0.1.0"
 }
