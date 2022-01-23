@@ -61,7 +61,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eslint": "eslint src __tests__ --ext .{ts,tsx,js,jsx}",
-    "eslint-fix": "eslint src __tests__ --ext .{ts,tsx,js,jsx}",
+    "eslint-fix": "eslint src __tests__ --ext .{ts,tsx,js,jsx} --fix",
     "prettier": "prettier --write .",
     "precommit": "lint-staged",
     "prepare": "husky install"
@@ -69,7 +69,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint src __tests__",
+      "eslint --fix",
       "git add"
     ]
   },
