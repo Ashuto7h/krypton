@@ -1,4 +1,5 @@
 export const COLORS = {
+  example: 'simply making new commit ',
   primaryBackground: '#007bff',
   primaryForeground: '#f5faff'
 };
