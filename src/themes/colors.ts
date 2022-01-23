@@ -1,6 +1,7 @@
 export const COLORS = {
   primaryBackground: '#007bff',
-  primaryForeground: '#f5faff'
+  primaryForeground: '#f5faff',
+  example: 'simply making new commit '
 };
 
 export const isCSSColor = (colorStr: string) => {
