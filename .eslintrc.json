@@ -201,6 +201,7 @@
     "multiline-ternary": "off",
     "no-console": "warn",
     "no-duplicate-imports": "off",
+    "no-debugger": "warn",
     "no-else-return": "off",
     "no-extra-parens": "off",
     "no-extra-semi": "warn",
@@ -242,6 +243,7 @@
     "quotes": "off",
     "quote-props": ["warn", "as-needed", { "unnecessary": true }],
     "react-hooks/exhaustive-deps": "off",
+    "react/button-has-type": "off",
     "react/display-name": "off",
     "react/default-props-match-prop-types": "off",
     "react/function-component-definition": [

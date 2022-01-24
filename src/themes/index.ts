@@ -1,8 +1,6 @@
-import type { TThemeName, TThemeType } from '../types/theme';
-import primary from './primary';
+import type { IThemeStyles, TThemeName } from '../types/theme';
+import { primary } from './colors';
 
-export { COLORS } from './colors';
-
-export const THEMES: Record<TThemeName, TThemeType> = {
-  primary
+export const THEMES: Record<TThemeName, IThemeStyles> = {
+  primary: { ...primary }
 };

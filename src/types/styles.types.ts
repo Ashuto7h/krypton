@@ -1,6 +1,6 @@
-import type primary from '../themes/primary';
+import type { IThemeStyles } from './theme';
 
 export interface IAlertStyles {
-  themeClasses: ReturnType<typeof primary>;
+  themeStyles: IThemeStyles;
   bgColor?: string;
 }
