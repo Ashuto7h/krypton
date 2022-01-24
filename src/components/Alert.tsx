@@ -1,15 +1,12 @@
-import type { FC } from 'react';
 import clsx from 'clsx';
-import { InvalidColorException } from '../exceptions';
+import type { FC } from 'react';
 import { alertStyles } from '../styles/alert';
 import { THEMES } from '../themes';
-import { isCSSColor } from '../themes/colors';
 import type { IAlertProps } from '../types/alert.types';
-import type { IThemeStyles } from '../types/theme';
+import type { IThemeStyles } from '../types/theme.types';
 import { Button } from './Button';
 
 export const Alert: FC<IAlertProps> = ({
-  bgColor,
   children,
   className,
   closeAble,
@@ -21,15 +18,15 @@ export const Alert: FC<IAlertProps> = ({
   transition
 }) => {
   let themeStyles = {} as IThemeStyles;
-  const classes = alertStyles({ theme: { bgColor, themeStyles } });
+  const classes = alertStyles({ theme: { themeStyles } });
 
   if (theme && !Object.keys(THEMES).includes(theme)) {
-    throw new Error('Unknown theme. Please provide one of these : primary');
+    console.error(new Error('Unknown theme. Please provide one of these : primary'));
     themeStyles = THEMES.primary;
   } else {
     themeStyles = THEMES[theme ?? 'primary'];
   }
-  console.log(clsx(classes.root, className));
+
   return (
     <div className={clsx(classes.root, className)} role='alert'>
       {children}
