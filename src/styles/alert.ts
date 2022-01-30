@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 import { GLOBAL_COLORS, primary } from '../themes/colors';
 import type { IAlertStyles } from '../types/styles.types';
 
-export const alertStyles = createUseStyles(({ themeStyles }: IAlertStyles) => ({
+export const alertStyles = createUseStyles(({ themeStyles, open }: IAlertStyles) => ({
   closeBtn: {
     '&:hover': {
       color: GLOBAL_COLORS.black,
@@ -24,8 +24,8 @@ export const alertStyles = createUseStyles(({ themeStyles }: IAlertStyles) => ({
   },
   root: {
     backgroundColor: themeStyles?.background ?? primary.background,
-    borderRadius: 0,
     color: themeStyles?.color ?? primary.color,
+    display: open ? 'block' : 'none',
     marginBottom: '1rem',
     padding: '0.75rem 1.25rem',
     position: 'relative'

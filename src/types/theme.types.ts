@@ -1,5 +1,3 @@
-export type TThemeName = 'primary';
-export interface IThemeStyles {
-  background: string;
-  color: string;
-}
+import type { THEMES } from '../themes';
+
+export type TTheme = typeof THEMES['primary'];

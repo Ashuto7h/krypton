@@ -1,5 +1,6 @@
-import type { CSSProperties } from 'react';
-import type { TThemeName } from './theme';
+import type { ClassValue } from 'clsx';
+import type { CSSProperties, ReactNode } from 'react';
+import type { THEMES } from '../themes';
 
 export interface IAlertProps {
   bgColor?: string;
@@ -10,5 +11,7 @@ export interface IAlertProps {
   closeAble?: boolean;
   position?: 'bottom' | 'top';
   style?: CSSProperties;
-  theme?: TThemeName;
+  theme?: keyof typeof THEMES;
+  clsx?: Array<ClassValue>;
+  closeIcon?: ReactNode;
 }

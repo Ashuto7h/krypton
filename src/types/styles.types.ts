@@ -1,6 +1,6 @@
-import type { IThemeStyles } from './theme';
+import type { TTheme } from './theme.types';
 
 export interface IAlertStyles {
-  themeStyles: IThemeStyles;
-  bgColor?: string;
+  themeStyles: TTheme;
+  open: boolean;
 }

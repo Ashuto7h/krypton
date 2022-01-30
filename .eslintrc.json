@@ -270,6 +270,7 @@
     "react/jsx-no-literals": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": "warn",
     "react/jsx-wrap-multilines": "off",
     "react/no-multi-comp": "off",
     "react/no-unstable-nested-components": "off",

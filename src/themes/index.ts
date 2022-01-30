@@ -1,6 +1,6 @@
-import type { IThemeStyles, TThemeName } from '../types/theme';
 import { primary } from './colors';
+import { MapValues } from '../types';
 
-export const THEMES: Record<TThemeName, IThemeStyles> = {
+export const THEMES = MapValues({
   primary: { ...primary }
-};
+});

@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 import type { TCSSUnit } from '../types/jss.types';
 
-const getUnits = (measure: number | string | undefined, unit: TCSSUnit = 'px') => {
+const getUnits = (measure?: number | string, unit: TCSSUnit = 'px') => {
   if (measure !== undefined) {
     return `${measure}${unit}`;
   }
@@ -16,35 +16,34 @@ const bg = (color?: string) => {
   return className;
 };
 
-const br = (
-  radius: number | { tl?: number; tr?: number; bl?: number; br?: number },
-  unit: TCSSUnit = 'px'
-): string => {
-  const brStyle = createUseStyles({
-    'Kr-br': ({
-      radius,
-      unit
-    }: {
-      radius?: number | { tl?: number; tr?: number; bl?: number; br?: number };
-      unit?: TCSSUnit;
-    }) => {
+interface IBRParams {
+  radius?:
+    | number
+    | { tl?: number | string; tr?: number | string; bl?: number | string; br?: number | string };
+  unit?: TCSSUnit;
+}
+
+const br = (radius: IBRParams['radius'], unit: IBRParams['unit'] = 'px'): string => {
+  const brStyle = createUseStyles(({ radius, unit }: IBRParams) => ({
+    'Kr-br': () => {
       if (typeof radius === 'number') {
+        return { borderRadius: getUnits(radius, unit) };
+      } else if (typeof radius === 'string') {
         return { borderRadius: radius };
       } else {
         const { br, bl, tr, tl } = radius ?? {};
         return {
-          borderRadius: {
-            bottomLeft: getUnits(bl, unit),
-            bottomRight: getUnits(br, unit),
-            topLeft: getUnits(tl, unit),
-            topRight: getUnits(tr, unit)
-          }
+          borderBottomLeftRadius: getUnits(bl, unit),
+          borderBottomRightRadius: getUnits(br, unit),
+          borderTopLeftRadius: getUnits(tl, unit),
+          borderTopRightRadius: getUnits(tr, unit)
         };
       }
     }
-  });
+  }));
   const className = brStyle({ theme: { radius, unit } })['Kr-br'];
   return className;
 };
+
 const jss = { bg, br };
 export default jss;
