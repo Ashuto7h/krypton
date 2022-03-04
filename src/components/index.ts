@@ -1,2 +1,4 @@
-export { Alert } from './Alert';
-export { Button } from './Button';
+import { Alert } from './Alert';
+import { Button } from './Button/Button';
+
+export { Alert, Button };

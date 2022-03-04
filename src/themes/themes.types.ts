@@ -1,3 +1,3 @@
-import type { THEMES } from '../themes';
+import type { THEMES } from '.';
 
 export type TTheme = typeof THEMES['primary'];

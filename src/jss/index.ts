@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss';
-import type { TCSSUnit } from '../types/jss.types';
+import type { TCSSUnit } from './jss.types';
 
 const getUnits = (measure?: number | string, unit: TCSSUnit = 'px') => {
   if (measure !== undefined) {
@@ -45,5 +45,10 @@ const br = (radius: IBRParams['radius'], unit: IBRParams['unit'] = 'px'): string
   return className;
 };
 
-const jss = { bg, br };
+const jss = {
+  background: bg,
+  bg,
+  borderRadius: br,
+  br
+};
 export default jss;
