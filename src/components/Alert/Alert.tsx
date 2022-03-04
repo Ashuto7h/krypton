@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { invalidThemeException } from '../../exceptions';
-import { alertStyles } from './alert.styles';
 import { THEMES, themeKeyList } from '../../themes';
-import type { IAlertProps } from './alert.types';
 import type { TTheme } from '../../themes/themes.types';
 import { clsxMaker } from '../../utils';
 import { Button } from '../Button/Button';
 import { useAlert } from './alert.hooks';
+import { alertStyles } from './alert.styles';
+import type { IAlertProps } from './alert.types';
 /**
  * @component
  * @example
