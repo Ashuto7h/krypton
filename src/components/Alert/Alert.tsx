@@ -8,6 +8,14 @@ import { Button } from '../Button/Button';
 import { useAlert } from './alert.hooks';
 import { alertStyles } from './alert.styles';
 import type { IAlertProps } from './alert.types';
+
+const CloseButton: FC<{ closeIcon: IAlertProps['closeIcon'] }> = ({ closeIcon, children }) => (
+  <span>{closeIcon ?? { children }}</span>
+);
+
+interface IAlert extends FC<IAlertProps> {
+  CloseButton: typeof CloseButton;
+}
 /**
  * @component
  * @example
@@ -17,7 +25,7 @@ import type { IAlertProps } from './alert.types';
  *
  * The alert component can be used to display contextual user messages.
  */
-export const Alert: FC<IAlertProps> = ({
+export const Alert: IAlert = ({
   children,
   className,
   closeAble,
@@ -43,7 +51,7 @@ export const Alert: FC<IAlertProps> = ({
   }
 
   return headless ? (
-    <> </>
+    <div role='alert'>{children}</div>
   ) : (
     <div className={clsxMaker(classes.root, clsxMaker(clsx), className)} role='alert' style={style}>
       {children}
@@ -51,6 +59,7 @@ export const Alert: FC<IAlertProps> = ({
     </div>
   );
 };
+Alert.CloseButton = CloseButton;
 
 Alert.defaultProps = {
   closeAble: false,
