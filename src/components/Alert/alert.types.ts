@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
-import type { IFCbaseProps } from '../../react-app-env';
+import type { HTMLAttributes, ReactNode } from 'react';
+import type { IFCbaseProps } from '../../global.types';
 import type { TTheme } from '../../themes/themes.types';
 
-export interface IAlertProps extends IFCbaseProps {
+export interface IAlertProps extends IFCbaseProps, HTMLAttributes<HTMLDivElement> {
   /** controls whether Alert is open or not.
    * @default true
    */

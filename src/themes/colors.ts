@@ -1,4 +1,4 @@
-import { MapValues } from '../types';
+import { MapValues } from '../global.types';
 
 export const danger = MapValues({
   background: '#c4183c',
@@ -169,6 +169,7 @@ export const GLOBAL_COLORS = MapValues({
   yellow: '#ffff00',
   yellowGreen: '#9acd32'
 });
+
 export const isCSSColor = (colorStr: string) => {
   const s = new Option().style;
   s.color = colorStr;

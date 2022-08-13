@@ -11,3 +11,4 @@ Reflect.defineProperty(window, 'matchMedia', {
   })),
   writable: true
 });
+export {};

@@ -1,21 +1,36 @@
 import type { FC } from 'react';
-import React from 'react';
 import { invalidThemeException } from '../../exceptions';
 import { THEMES, themeKeyList } from '../../themes';
-import type { TTheme } from '../../themes/themes.types';
 import { clsxMaker } from '../../utils';
 import { Button } from '../Button/Button';
 import { useAlert } from './alert.hooks';
 import { alertStyles } from './alert.styles';
 import type { IAlertProps } from './alert.types';
 
-const CloseButton: FC<{ closeIcon: IAlertProps['closeIcon'] }> = ({ closeIcon, children }) => (
-  <span>{closeIcon ?? { children }}</span>
-);
+/**
+ * TODO:
+ * *1. create all themes
+ * 2. write unit tests. get ideas for integration tests
+ * 3. doc it.
+ */
+/**
+ * @Features - complete
+ *  10. transition - fade in out | swipe down | swipe up | no transition
+ *  11. jss - *bgColor | *borderRadius | fontColor,
+ * *1. className - any class provided will override current config
+ * *2. closeAble - if true, a closeButton appears which close the Alert
+ * *3. closeIcon - renders custom close icon if provided. it only works when closeAble is true
+ * *4. clsx - util prop to provide an array of classNames
+ * *5. open - state of the alert - true: open, false: closeAble
+ * *6. position - bottom | top
+ * *7. all props that can be provided to root element.
+ * *8. theme - a theme from one of different standard themes
+ * *9. timer - a time after which it should close automatically
 
-interface IAlert extends FC<IAlertProps> {
-  CloseButton: typeof CloseButton;
-}
+ * @Features - headless
+ *  1. completely basic, unstyled
+ *  2. all functions up except below ones -
+ */
 /**
  * @component
  * @example
@@ -25,46 +40,42 @@ interface IAlert extends FC<IAlertProps> {
  *
  * The alert component can be used to display contextual user messages.
  */
-export const Alert: IAlert = ({
+export const Alert: FC<IAlertProps> = ({
   children,
   className,
   closeAble,
   closeIcon,
   clsx,
-  headless,
   open,
   position,
-  style,
   theme,
   timer,
-  transition
+  transition: _transition,
+  ...rootProps
 }) => {
-  let themeStyles = {} as TTheme;
+  if (theme && !themeKeyList.includes(theme)) {
+    invalidThemeException(theme);
+  }
+  const themeStyles = THEMES[theme ?? 'primary'] || THEMES.primary;
   const { showAlert } = useAlert(open ?? true, timer);
   const classes = alertStyles({ theme: { open: showAlert, position, themeStyles } });
 
-  if (theme && themeKeyList.includes(theme)) {
-    invalidThemeException(theme);
-    themeStyles = THEMES.primary;
-  } else {
-    themeStyles = THEMES[theme ?? 'primary'];
-  }
-
-  return headless ? (
-    <div role='alert'>{children}</div>
-  ) : (
-    <div className={clsxMaker(classes.root, clsxMaker(clsx), className)} role='alert' style={style}>
+  return (
+    <div
+      className={clsxMaker(classes.root, clsxMaker(clsx), className)}
+      role='alert'
+      {...rootProps}
+    >
       {children}
-      {closeAble && <span className={classes.closeBtn}>{closeIcon ?? <Button>x</Button>}</span>}
+      {(closeAble && <span className={classes.closeBtn}>{closeIcon ?? <Button>x</Button>}</span>) ||
+        null}
     </div>
   );
 };
-Alert.CloseButton = CloseButton;
 
 Alert.defaultProps = {
   closeAble: false,
   clsx: [],
-  headless: false,
   open: true,
   style: {},
   theme: 'primary',

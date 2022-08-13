@@ -1,8 +1,15 @@
-import { MapValues } from '../react-app-env';
-import { primary } from './colors';
+import { MapValues } from '../global.types';
+import { danger, dark, info, light, primary, secondary, success, warning } from './colors';
 
 export const THEMES = MapValues({
-  primary: { ...primary }
+  danger,
+  dark,
+  info,
+  light,
+  primary,
+  secondary,
+  success,
+  warning
 });
 
-export const themeKeyList: Array<keyof typeof THEMES> = Object.keys(THEMES);
+export const themeKeyList = Object.keys(THEMES);

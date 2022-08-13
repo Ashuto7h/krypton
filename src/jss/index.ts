@@ -12,8 +12,7 @@ const bg = (color?: string) => {
   const bgStyle = createUseStyles(({ color }: { color?: string }) => ({
     'Kr-bg': { background: color }
   }));
-  const className = bgStyle({ theme: { color } })['Kr-bg'];
-  return className;
+  return bgStyle({ theme: { color } })['Kr-bg'];
 };
 
 interface IBRParams {
@@ -41,8 +40,7 @@ const br = (radius: IBRParams['radius'], unit: IBRParams['unit'] = 'px'): string
       }
     }
   }));
-  const className = brStyle({ theme: { radius, unit } })['Kr-br'];
-  return className;
+  return brStyle({ theme: { radius, unit } })['Kr-br'];
 };
 
 const jss = {
