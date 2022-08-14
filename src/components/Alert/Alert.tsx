@@ -1,6 +1,4 @@
 import type { FC } from 'react';
-import { invalidThemeException } from '../../exceptions';
-import { THEMES, themeKeyList } from '../../themes';
 import { clsxMaker } from '../../utils';
 import { Button } from '../Button/Button';
 import { useAlert } from './alert.hooks';
@@ -9,9 +7,8 @@ import type { IAlertProps } from './alert.types';
 
 /**
  * TODO:
- * *1. create all themes
- * 2. write unit tests. get ideas for integration tests
- * 3. doc it.
+ *  2. write unit tests.
+ *  3. doc it.
  */
 /**
  * @Features - complete
@@ -53,11 +50,7 @@ export const Alert: FC<IAlertProps> = ({
   transition: _transition,
   ...rootProps
 }) => {
-  if (theme && !themeKeyList.includes(theme)) {
-    invalidThemeException(theme);
-  }
-  const themeStyles = THEMES[theme ?? 'primary'] || THEMES.primary;
-  const { showAlert } = useAlert(open ?? true, timer);
+  const { showAlert, themeStyles } = useAlert(open ?? true, theme, timer);
   const classes = alertStyles({ theme: { open: showAlert, position, themeStyles } });
 
   return (
@@ -77,7 +70,6 @@ Alert.defaultProps = {
   closeAble: false,
   clsx: [],
   open: true,
-  style: {},
   theme: 'primary',
   timer: 0,
   transition: 'none'
