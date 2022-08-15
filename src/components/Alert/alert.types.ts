@@ -14,24 +14,47 @@ export interface IAlertProps extends IFCbaseProps, HTMLAttributes<HTMLDivElement
    * @default 0
    */
   timer?: number;
-  /** transition type for Alert
-   * @default 'none'
+  /** Alert transition when it appears
+   *
+   * It only supports inbuild animation class functions
+   * @example
+   * import { animateSlide } from 'krypton/jss';
+   * appearTransition = animateSlide('top', 25, 500, 0);
    */
-  transition?: 'fade' | 'none';
+  appearAnimation?: string;
   /** if true, provides a button to close alert
    * @default false
    */
   closeAble?: boolean;
-  /** absolute positon of the Alert
-   * @default undefined
-   */
+  /** absolute positon of the Alert  */
   position?: 'bottom' | 'top';
   /** custom closeIcon to be rendered for close button */
   closeIcon?: ReactNode;
+  /** Alert transition when it disappears
+   *
+   * @example
+   * import { animateSlide } from 'krypton/jss';
+   * disappearTransition = { animation : animateSlide('top', 25, 500, 0), duration: 500 ;
+   */
+  disappearAnimation?: {
+    /**
+     * Animation only supports inbuild animation class functions
+     * @example
+     * import { animateSlide } from 'krypton/jss';
+     * animation : animateSlide('top', 25, 500, 0)
+     */
+    animation: string;
+    /**
+     * Duration is required to delay unmount (in ms).
+     *
+     * It should be same as the duration provided to animation.
+     */
+    duration: number;
+  };
 }
 
 export interface IAlertStyles {
   themeStyles: TTheme;
   open: boolean;
-  position: IAlertProps['position'];
+  position?: IAlertProps['position'];
 }

@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { Alert } from './components';
 import { bg, br } from './jss';
+import { slide } from './jss/animate-slide';
 import { THEMES } from './themes';
 import { GLOBAL_COLORS } from './themes/colors';
 import type { TGlobalColorKeys, TThemeKeys } from './themes/themes.types';
@@ -22,6 +23,8 @@ const App: FC = () => {
   const DEFAULT_BORDER_TYPE = 'ALL';
   const [borderType, setBorderType] = useState(DEFAULT_BORDER_TYPE);
   const [theme, setTheme] = useState<TThemeKeys | undefined>('primary');
+  // const [appearTransition, setAppearTransition] = useState<TAlertTransition>();
+  // const [disappearTransition, setDisappearTransition] = useState<TAlertTransition>();
   const [borderRadius, setBorderRadius] = useState<
     number | { tl?: number; tr?: number; bl?: number; br?: number } | undefined
   >(0);
@@ -60,14 +63,14 @@ const App: FC = () => {
         <input
           checked={isOpen === OPEN_STATE}
           name={OPEN_STATE}
-          onClick={() => {
+          onChange={() => {
             setIsOpen(isOpen === OPEN_STATE ? '' : OPEN_STATE);
           }}
           type='checkbox'
         />
       </div>
       {isOpen ? (
-        <>
+        <div>
           <div>
             Theme:{' '}
             <select
@@ -115,7 +118,7 @@ const App: FC = () => {
               <input
                 checked={borderType === DEFAULT_BORDER_TYPE}
                 name={DEFAULT_BORDER_TYPE}
-                onClick={() => {
+                onChange={() => {
                   setBorderType(borderType === DEFAULT_BORDER_TYPE ? '' : DEFAULT_BORDER_TYPE);
                 }}
                 type='checkbox'
@@ -174,9 +177,38 @@ const App: FC = () => {
               </>
             )}
           </div>
-        </>
+          <div>
+            Appear Transition:{' '}
+            <select
+              name='appear transition'
+              // onChange={({ target: { value } }) => {
+              //  setAppearTransition(value as TAlertTransition);
+              // }}
+              // value={appearTransition ?? ''}
+            >
+              <option value=''>Select</option>
+            </select>
+            Disappear Transition:{' '}
+            <select
+              name='disappear transition'
+              // onChange={({ target: { value } }) => {
+              //   setDisappearTransition(value as TAlertTransition);
+              // }}
+              // value={disappearTransition ?? ''}
+            >
+              <option value=''>Select</option>
+            </select>
+          </div>
+        </div>
       ) : null}
-      <Alert clsx={[bg(bgColor), br(borderRadius)]} open={isOpen === OPEN_STATE} theme={theme}>
+      <Alert
+        appearAnimation={slide('right', 500, 500, 0)}
+        clsx={[bg(bgColor), br(borderRadius)]}
+        disappearAnimation={{ animation: slide('left', 25, 500, 0, 'reverse'), duration: 500 }}
+        open={isOpen === OPEN_STATE}
+        theme={theme}
+        timer={4000}
+      >
         This is an Alert
       </Alert>
     </>

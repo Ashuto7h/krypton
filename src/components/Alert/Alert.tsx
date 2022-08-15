@@ -38,24 +38,40 @@ import type { IAlertProps } from './alert.types';
  * The alert component can be used to display contextual user messages.
  */
 export const Alert: FC<IAlertProps> = ({
+  appearAnimation,
   children,
   className,
   closeAble,
   closeIcon,
   clsx,
+  disappearAnimation,
   open,
   position,
   theme,
   timer,
-  transition: _transition,
   ...rootProps
 }) => {
-  const { showAlert, themeStyles } = useAlert(open ?? true, theme, timer);
-  const classes = alertStyles({ theme: { open: showAlert, position, themeStyles } });
-
+  const { showAlert, themeStyles, isClosing } = useAlert(
+    open ?? true,
+    theme,
+    timer,
+    disappearAnimation?.duration
+  );
+  const classes = alertStyles({
+    theme: {
+      open: showAlert,
+      position,
+      themeStyles
+    }
+  });
   return (
     <div
-      className={clsxMaker(classes.root, clsxMaker(clsx), className)}
+      className={clsxMaker(
+        classes.root,
+        clsxMaker(clsx),
+        isClosing ? disappearAnimation?.animation : appearAnimation,
+        className
+      )}
       role='alert'
       {...rootProps}
     >
@@ -71,6 +87,5 @@ Alert.defaultProps = {
   clsx: [],
   open: true,
   theme: 'primary',
-  timer: 0,
-  transition: 'none'
+  timer: 0
 };
