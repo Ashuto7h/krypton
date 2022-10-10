@@ -1,0 +1,21 @@
+
+- Components
+    - Alert 
+        - create unit test cases
+        - docsify - web
+            - Todo:
+            - 2. Show Code Box
+            - 4. Select Font color
+            - 5. checkbox closeable
+            - 6. Checkbox open
+            - 7. Input timer
+            - 8. DropDown Position
+            - 3. Select Transitions
+            - 1. jss background, border, radius, font color, animate-slide, animate-fade
+        - typedoc - comments
+
+- Jss
+    - add fade animation
+    - create simple unit tests to recieve a non empty string
+    - docsify - web
+    - typedoc - comments

@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { clsxMaker } from '../../utils';
 import { Button } from '../Button/Button';
+import { TEST_ID } from '../testId';
 import { useAlert } from './alert.hooks';
 import { alertStyles } from './alert.styles';
 import type { IAlertProps } from './alert.types';
@@ -12,8 +13,8 @@ import type { IAlertProps } from './alert.types';
  */
 /**
  * @Features - complete
- *  10. transition - fade in out | swipe down | swipe up | no transition
- *  11. jss - *bgColor | *borderRadius | fontColor,
+ *  10. jss-animations - fade in out | *slide
+ *  11. jss - *bgColor | *borderRadius | *fontColor,
  * *1. className - any class provided will override current config
  * *2. closeAble - if true, a closeButton appears which close the Alert
  * *3. closeIcon - renders custom close icon if provided. it only works when closeAble is true
@@ -31,7 +32,7 @@ import type { IAlertProps } from './alert.types';
 /**
  * @component
  * @example
- * <Alert open>
+ * <Alert>
  *  This is Alert Box
  * </Alert>
  *
@@ -74,6 +75,7 @@ export const Alert: FC<IAlertProps> = ({
       )}
       role='alert'
       {...rootProps}
+      data-testid={TEST_ID.ALERT}
     >
       {children}
       {(closeAble && <span className={classes.closeBtn}>{closeIcon ?? <Button>x</Button>}</span>) ||

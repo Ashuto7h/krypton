@@ -18,7 +18,6 @@ interface IAnimateSlideParams {
    * @default 0
    */
   delay: number;
-
   /**
    * Animation direction
    */
@@ -26,8 +25,8 @@ interface IAnimateSlideParams {
 }
 
 /**
- *
- * @param  {string} from - `"top"`` - Direction of slide
+ * Creates a slide animation transition
+ * @param  {string} from - `"top"` - Direction of slide
  * @param length - `30` - Length of slide (in px)
  * @param duration - `500` - Animation duration (in ms)
  * @param delay - `0` - Animation delay (in seconds)
@@ -40,7 +39,7 @@ export const slide = (
   duration = 500,
   delay = 0,
   direction: CSSProperties['animationDirection'] = 'normal'
-) => {
+): string => {
   const slideStyle = createUseStyles(
     ({ from, length, duration, delay, direction }: IAnimateSlideParams) => {
       const getSlideKeyframes = () => {
@@ -64,11 +63,11 @@ export const slide = (
       };
     }
   );
-  return slideStyle({ theme: { delay, direction, duration, from, length } })['Kr-slide'];
+  return slideStyle({ theme: { delay, direction, duration, from, length } })['Kr-slide'] as string;
 };
 
 /**
- *
+ * Creates a slide animation transition
  * @param  {string} from - `"top"`` - Direction of slide
  * @param length - `30` - Length of slide (in px)
  * @param duration - `500` - Animation duration (in ms)

@@ -27,6 +27,6 @@ export const br = (radius: IBRParams['radius'], unit: IBRParams['unit'] = 'px'):
       }
     }
   }));
-  return brStyle({ theme: { radius, unit } })['Kr-br'];
+  return brStyle({ theme: { radius, unit } })['Kr-br'] as string;
 };
 export const borderRadius = br;
